@@ -1,0 +1,815 @@
+<title>Phoenix United FC — Football. Degree. Pathway.</title>
+<meta name="description" content="Train as a professional in Dubai and earn an accredited university degree — at the same time. Phoenix United FC development programme.">
+
+<style>
+:root{
+  --black:#0D0D0D;
+  --ink:#0A0A0A;
+  --panel:#141312;      /* warm off-black card on black */
+  --navy:#0D1B2A;       /* midnight blue */
+  --navy-2:#12233A;
+  --cream:#E8DFC8;      /* sandy / cream reading surface */
+  --cream-2:#DED3B6;
+  --white:#FFFFFF;
+  --gold:#C9A84C;       /* the thread */
+  --gold-lo:#A98B39;
+  --gold-hi:#DCC178;
+  --on-dark:#EDE7D8;    /* body text on dark */
+  --on-dark-mute:#A6A196; /* secondary on dark */
+  --on-cream:#1A1712;   /* body text on cream */
+  --on-cream-mute:#5A4F3A;
+  --rule-dark:rgba(201,168,76,.28);
+  --rule-cream:rgba(26,23,18,.18);
+  --maxw:1200px;
+  --pad:clamp(20px,5vw,64px);
+  --sans:Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--black);
+  color:var(--on-dark);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--black)}
+
+/* ---------- type system (Arial Black / Bold / Regular + Amiri via artwork) ---------- */
+.display{
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:-.02em;
+  line-height:.98;
+  text-wrap:balance;
+  font-size:clamp(2.4rem,7vw,5.4rem);
+}
+h2.head{
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:-.015em;
+  line-height:1.02;
+  text-wrap:balance;
+  font-size:clamp(1.9rem,4.4vw,3.2rem);
+}
+h3.sub{
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.01em;
+  font-size:clamp(1.05rem,2.2vw,1.35rem);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.6em;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.28em;
+  font-size:.72rem;
+  color:var(--gold);
+}
+.eyebrow::before{
+  content:"";width:26px;height:1px;background:var(--gold);opacity:.9;
+}
+.lede{font-size:clamp(1.05rem,1.6vw,1.22rem);line-height:1.55;max-width:60ch}
+.body{max-width:62ch}
+.body p+p{margin-top:1em}
+.muted{color:var(--on-dark-mute)}
+
+/* ---------- layout primitives ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+section{position:relative;padding-block:clamp(64px,9vw,120px)}
+.sec-black{background:var(--black)}
+.sec-navy{background:var(--navy);--rule-dark:rgba(201,168,76,.3)}
+.sec-cream{background:var(--cream);color:var(--on-cream)}
+.sec-cream .eyebrow{color:var(--gold-lo)}
+.sec-cream .eyebrow::before{background:var(--gold-lo)}
+.sec-cream .muted{color:var(--on-cream-mute)}
+.hairline{height:1px;border:0;background:var(--rule-dark)}
+.sec-cream .hairline{background:var(--rule-cream)}
+
+/* the gold "thread" — a recurring vertical seam */
+.thread{position:absolute;top:0;bottom:0;left:var(--pad);width:1px;
+  background:linear-gradient(var(--gold),transparent 40%,transparent 60%,var(--gold));
+  opacity:.22;pointer-events:none}
+@media(max-width:820px){.thread{display:none}}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.6em;
+  font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.82rem;
+  padding:15px 26px;border:1px solid transparent;cursor:pointer;
+  transition:background .25s,color .25s,border-color .25s,transform .25s;
+}
+.btn:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+.btn-gold{background:var(--gold);color:var(--black)}
+.btn-gold:hover{background:var(--gold-hi);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--rule-dark);color:var(--on-dark)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.sec-cream .btn-ghost{border-color:var(--rule-cream);color:var(--on-cream)}
+.sec-cream .btn-ghost:hover{border-color:var(--gold-lo);color:var(--gold-lo)}
+.btn .arw{transition:transform .25s}
+.btn:hover .arw{transform:translateX(4px)}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:60;
+  background:rgba(13,13,13,.72);backdrop-filter:blur(10px);
+  border-bottom:1px solid transparent;transition:background .3s,border-color .3s,padding .3s}
+header.scrolled{background:rgba(9,9,9,.94);border-bottom-color:var(--rule-dark)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;
+  max-width:var(--maxw);margin:0 auto;padding:14px var(--pad)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:40px;width:auto}
+.brand .bt{font-weight:900;text-transform:uppercase;letter-spacing:.02em;font-size:.95rem;line-height:1}
+.brand .bt small{display:block;font-size:.58rem;letter-spacing:.34em;color:var(--gold);font-weight:700;margin-top:3px}
+.navlinks{display:flex;align-items:center;gap:28px}
+.navlinks a{font-weight:700;text-transform:uppercase;letter-spacing:.13em;font-size:.72rem;color:var(--on-dark-mute);transition:color .2s}
+.navlinks a:hover{color:var(--gold)}
+.nav-cta{padding:11px 20px;font-size:.72rem}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{display:block;width:24px;height:2px;background:var(--gold);margin:5px 0;transition:.3s}
+@media(max-width:960px){
+  .navlinks{position:fixed;inset:0 0 0 auto;width:min(78vw,320px);flex-direction:column;align-items:flex-start;
+    justify-content:center;gap:26px;background:var(--ink);padding:40px;transform:translateX(100%);
+    transition:transform .35s;border-left:1px solid var(--rule-dark)}
+  .navlinks.open{transform:none}
+  .navlinks a{font-size:1rem;color:var(--on-dark)}
+  .burger{display:block;z-index:70}
+  .nav .nav-cta{display:none}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;
+  padding-block:clamp(90px,14vh,150px) clamp(48px,7vw,84px);overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:saturate(.92) contrast(1.02)}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(13,13,13,.72) 0%,rgba(13,13,13,.30) 34%,rgba(13,13,13,.62) 72%,rgba(13,13,13,.97) 100%)}
+.hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(13,13,13,.85),rgba(13,13,13,.15) 60%,transparent)}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.hero .eyebrow{margin-bottom:22px}
+.hero .display{max-width:15ch}
+.hero .sub{margin-top:22px;max-width:44ch;font-size:clamp(1.05rem,1.7vw,1.28rem);line-height:1.5;color:var(--on-dark);font-weight:400}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.chip{display:inline-flex;align-items:center;gap:.5em;margin-top:26px;
+  border:1px solid var(--rule-dark);padding:8px 15px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;font-size:.66rem;color:var(--gold)}
+.hero-stats{display:flex;flex-wrap:wrap;gap:26px 40px;margin-top:38px;padding-top:26px;border-top:1px solid var(--rule-dark)}
+.hero-stats div{min-width:120px}
+.hero-stats b{display:block;font-weight:900;font-size:1.55rem;letter-spacing:-.01em;color:var(--white)}
+.hero-stats span{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-mute);font-weight:700}
+
+/* ---------- generic two-col ---------- */
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,68px);align-items:center}
+.split.rev .col-media{order:-1}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:34px}.split.rev .col-media{order:0}}
+.col-media img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+.media-frame{position:relative;border:1px solid var(--rule-dark)}
+.media-frame .tag{position:absolute;left:0;bottom:0;background:var(--black);color:var(--gold);
+  font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;padding:7px 12px;border-top:1px solid var(--rule-dark);border-right:1px solid var(--rule-dark)}
+
+/* pull quote / belief */
+.belief{font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:1.08;
+  font-size:clamp(1.5rem,3vw,2.4rem);text-wrap:balance}
+.belief .g{color:var(--gold)}
+.quote{border-left:2px solid var(--gold);padding-left:20px;margin-top:8px}
+.quote p{font-size:1.12rem;line-height:1.5;font-style:italic}
+.quote cite{display:block;margin-top:10px;font-style:normal;font-weight:700;text-transform:uppercase;
+  letter-spacing:.16em;font-size:.68rem;color:var(--gold)}
+
+/* ---------- who it's for ---------- */
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;margin-top:32px;max-width:760px}
+@media(max-width:640px){.checks{grid-template-columns:1fr}}
+.checks li{list-style:none;display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-top:1px solid var(--rule-dark)}
+.checks .n{font-weight:900;color:var(--gold);font-size:.9rem;letter-spacing:.05em;min-width:30px}
+.checks p{font-size:1.02rem;line-height:1.45}
+
+/* ---------- pyramid ---------- */
+.pyramid{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.tier{display:flex;align-items:center;gap:18px;border:1px solid var(--rule-dark);
+  padding:18px 22px;background:rgba(255,255,255,.015);transition:border-color .3s,background .3s}
+.tier .lvl{font-weight:700;letter-spacing:.2em;font-size:.62rem;color:var(--on-dark-mute);min-width:52px;text-transform:uppercase}
+.tier .nm{font-weight:900;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(1rem,2vw,1.35rem)}
+.tier.t1{width:64%}.tier.t2{width:76%}.tier.t3{width:88%}.tier.t4{width:100%}
+@media(max-width:720px){.tier{width:100%!important}}
+.tier.here{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.tier.here .lvl{color:rgba(13,13,13,.66)}
+.tier.here .badge{margin-left:auto;font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:.6rem;
+  background:var(--black);color:var(--gold);padding:5px 10px}
+.exposure{display:flex;gap:22px;align-items:baseline;margin-top:30px;padding-top:26px;border-top:1px solid var(--rule-dark);flex-wrap:wrap}
+.exposure b{font-weight:900;font-size:2.4rem;color:var(--gold);letter-spacing:-.02em;line-height:1}
+.exposure p{max-width:52ch}
+
+/* ---------- day in life (sequence) ---------- */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule-dark);
+  border:1px solid var(--rule-dark);margin-top:8px}
+@media(max-width:820px){.timeline{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.timeline{grid-template-columns:1fr}}
+.slot{background:var(--black);padding:26px 22px;min-height:190px;display:flex;flex-direction:column}
+.slot .t{font-weight:900;color:var(--gold);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase}
+.slot .when{font-weight:900;text-transform:uppercase;font-size:1.15rem;margin-top:6px;letter-spacing:-.01em}
+.slot p{margin-top:12px;font-size:.92rem;line-height:1.5;color:var(--on-dark-mute)}
+
+/* ---------- dubai / cream tiles ---------- */
+.tiles{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px;margin-top:8px}
+.tiles img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1}
+.tiles .big{grid-row:span 2;aspect-ratio:auto}
+.tiles .big img{aspect-ratio:3/4;height:100%}
+@media(max-width:820px){.tiles{grid-template-columns:1fr 1fr}.tiles .big{grid-row:auto}.tiles .big img{aspect-ratio:16/10}}
+.livelist{list-style:none;display:grid;gap:0;margin-top:28px}
+.livelist li{display:flex;gap:16px;padding:15px 0;border-top:1px solid var(--rule-cream);align-items:baseline}
+.livelist .n{color:var(--gold-lo);font-weight:900;font-size:.8rem}
+
+/* ---------- network cards ---------- */
+.netgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+@media(max-width:820px){.netgrid{grid-template-columns:1fr}}
+.netcard{border:1px solid var(--rule-dark);padding:30px 26px;background:rgba(255,255,255,.015);
+  display:flex;flex-direction:column;gap:14px;transition:border-color .3s,transform .3s}
+.netcard:hover{border-color:var(--gold);transform:translateY(-3px)}
+.netcard.entry{background:var(--navy);border-color:var(--gold)}
+.netcard .crest{height:64px;width:auto;align-self:flex-start}
+.netcard .place{font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.62rem;color:var(--gold)}
+.netcard .cn{font-weight:900;text-transform:uppercase;font-size:1.25rem;letter-spacing:-.01em}
+.netcard p{color:var(--on-dark-mute);font-size:.94rem;line-height:1.5}
+.netcard .tagline{margin-top:auto;font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.6rem;color:var(--gold)}
+.us-route{margin-top:22px;border:1px dashed var(--rule-dark);padding:22px 24px;display:flex;gap:20px;
+  align-items:center;justify-content:space-between;flex-wrap:wrap}
+.us-route p{max-width:60ch;color:var(--on-dark-mute)}
+.us-route b{color:var(--white)}
+
+/* ---------- included ledger ---------- */
+.ledger{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule-dark);
+  border:1px solid var(--rule-dark);margin-top:8px}
+@media(max-width:900px){.ledger{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.ledger{grid-template-columns:1fr}}
+.lcol{background:var(--black);padding:28px 24px}
+.lcol h4{font-weight:900;text-transform:uppercase;letter-spacing:.02em;font-size:.95rem;color:var(--gold);
+  padding-bottom:16px;margin-bottom:8px;border-bottom:1px solid var(--rule-dark)}
+.lcol ul{list-style:none}
+.lcol li{font-size:.9rem;line-height:1.4;padding:11px 0;color:var(--on-dark);border-bottom:1px solid rgba(201,168,76,.1);
+  padding-left:18px;position:relative}
+.lcol li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
+.lcol li:last-child{border-bottom:0}
+
+/* ---------- team ---------- */
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
+@media(max-width:900px){.team{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.team{grid-template-columns:1fr}}
+.person{border:1px solid var(--rule-dark);background:var(--panel);overflow:hidden;display:flex;flex-direction:column}
+.person .ph{aspect-ratio:1/1;overflow:hidden;position:relative;background:var(--navy)}
+.person .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.person .ph.mono{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%,var(--navy-2),var(--navy))}
+.person .ph.mono img{width:56%;height:auto;object-fit:contain;object-position:center}
+.person .info{padding:18px 18px 22px}
+.person .role{font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.58rem;color:var(--gold)}
+.person .nm{font-weight:900;text-transform:uppercase;font-size:1.05rem;margin-top:6px;letter-spacing:-.01em;line-height:1.05}
+.person .bio{font-size:.82rem;line-height:1.45;color:var(--on-dark-mute);margin-top:9px}
+
+/* ---------- investment ---------- */
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+@media(max-width:720px){.paths{grid-template-columns:1fr}}
+.path{border:1px solid var(--rule-cream);padding:30px 28px;background:rgba(255,255,255,.35);display:flex;flex-direction:column;gap:14px}
+.path.complete{background:var(--navy);color:var(--on-dark);border-color:var(--gold)}
+.path .k{font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.62rem;color:var(--gold-lo)}
+.path.complete .k{color:var(--gold)}
+.path .pn{font-weight:900;text-transform:uppercase;font-size:1.5rem;letter-spacing:-.01em;line-height:1}
+.path p{font-size:.95rem;line-height:1.5}
+.path.complete p{color:var(--on-dark-mute)}
+.path .fig{margin-top:auto;padding-top:16px;border-top:1px solid var(--rule-cream);font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;font-size:.72rem}
+.path.complete .fig{border-top-color:var(--rule-dark);color:var(--gold)}
+.compare{display:flex;gap:26px;flex-wrap:wrap;margin-top:26px;padding-top:24px;border-top:1px solid var(--rule-cream)}
+.compare div{flex:1;min-width:220px}
+.compare b{font-weight:900;font-size:1.15rem;display:block;letter-spacing:-.01em}
+.compare span{font-size:.86rem;color:var(--on-cream-mute)}
+.founding-note{margin-top:22px;font-size:.9rem;color:var(--on-cream-mute)}
+.founding-note b{color:var(--on-cream)}
+
+/* ---------- apply / form ---------- */
+.apply-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,64px);align-items:start}
+@media(max-width:860px){.apply-grid{grid-template-columns:1fr;gap:40px}}
+.apply-copy .display{font-size:clamp(2rem,5vw,3.4rem)}
+.apply-copy .lede{margin-top:22px}
+.scarcity{display:flex;gap:24px;margin-top:30px;flex-wrap:wrap}
+.scarcity div b{display:block;font-weight:900;font-size:2rem;color:var(--gold);line-height:1}
+.scarcity div span{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-mute);font-weight:700}
+form{border:1px solid var(--rule-dark);background:var(--panel);padding:clamp(24px,4vw,38px)}
+form .fh{font-weight:900;text-transform:uppercase;font-size:1.05rem;letter-spacing:-.01em;margin-bottom:20px}
+.field{margin-bottom:16px}
+.field label{display:block;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.6rem;color:var(--gold);margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;background:var(--ink);border:1px solid var(--rule-dark);
+  color:var(--on-dark);font-family:inherit;font-size:.95rem;padding:12px 14px;transition:border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--gold)}
+.field textarea{resize:vertical;min-height:84px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:480px){.two{grid-template-columns:1fr}}
+form .btn{width:100%;justify-content:center;margin-top:6px}
+.formnote{font-size:.72rem;color:var(--on-dark-mute);margin-top:14px;line-height:1.5}
+.toast{margin-top:16px;padding:14px 16px;background:var(--navy);border:1px solid var(--gold);color:var(--gold);
+  font-size:.9rem;display:none}
+.toast.show{display:block}
+
+/* ---------- faq ---------- */
+.faq{max-width:860px;margin-top:8px}
+.q{border-top:1px solid var(--rule-dark)}
+.q:last-child{border-bottom:1px solid var(--rule-dark)}
+.q button{width:100%;background:none;border:0;cursor:pointer;color:var(--on-dark);text-align:left;
+  display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 4px;
+  font-family:inherit;font-weight:700;font-size:1.02rem;letter-spacing:-.005em}
+.q button:hover{color:var(--gold)}
+.q .ic{color:var(--gold);font-size:1.5rem;line-height:1;transition:transform .3s;flex:none}
+.q.open .ic{transform:rotate(45deg)}
+.q .a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.q .a p{padding:0 4px 22px;color:var(--on-dark-mute);max-width:70ch;line-height:1.6}
+
+/* ---------- final cta ---------- */
+.final{position:relative;text-align:center;overflow:hidden}
+.final .display{max-width:18ch;margin:0 auto}
+.final .lede{margin:22px auto 0;text-align:center}
+.final .btn{margin-top:34px}
+.final-marks{display:flex;justify-content:center;align-items:center;gap:26px;margin-top:40px;flex-wrap:wrap;opacity:.85}
+.final-marks img{height:44px;width:auto}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);border-top:1px solid var(--rule-dark);padding-block:64px 40px}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+@media(max-width:760px){.foot-top{grid-template-columns:1fr;gap:32px}}
+.foot-brand img{height:56px;margin-bottom:18px}
+.foot-brand .belief-sm{font-weight:900;text-transform:uppercase;line-height:1.15;font-size:1rem;letter-spacing:-.01em;max-width:26ch}
+.foot-brand .belief-sm .g{color:var(--gold)}
+.foot-col h5{font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.62rem;color:var(--gold);margin-bottom:16px}
+.foot-col a,.foot-col p{display:block;color:var(--on-dark-mute);font-size:.9rem;padding:5px 0;transition:color .2s}
+.foot-col a:hover{color:var(--gold)}
+.arabic-mark{margin-top:26px}
+.arabic-mark img{height:52px;width:auto}
+.foot-bottom{margin-top:48px;padding-top:24px;border-top:1px solid var(--rule-dark);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+.foot-bottom p{font-size:.76rem;color:var(--on-dark-mute)}
+.mission{font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.8rem;color:var(--on-dark)}
+.tribute{font-size:.72rem;color:var(--on-dark-mute);letter-spacing:.04em}
+.tribute .g{color:var(--gold)}
+</style>
+
+<!-- ============ HEADER ============ -->
+<header id="top">
+  <nav class="nav">
+    <a href="#top" class="brand" aria-label="Phoenix United FC — home">
+      <img src="__CREST__" alt="Phoenix United FC crest">
+      <span class="bt">Phoenix United<small>Football · Degree · Pathway</small></span>
+    </a>
+    <div class="navlinks" id="navlinks">
+      <a href="#overview">Overview</a>
+      <a href="#pathway">Programme</a>
+      <a href="#network">Pathway</a>
+      <a href="#included">Included</a>
+      <a href="#team">Team</a>
+      <a href="#apply" class="g" style="color:var(--gold)">Apply</a>
+    </div>
+    <a href="#apply" class="btn btn-gold nav-cta">Start Your Pathway</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-bg"><img src="__HERO__" alt="Phoenix United player"></div>
+  <div class="wrap">
+    <span class="eyebrow">Phoenix United FC · Dubai · UAE FA Licensed</span>
+    <h1 class="display">The doors<br>open here</h1>
+    <p class="sub">The professional game won't knock on your door. Train as a professional in Dubai and earn an accredited university degree — at the same time.</p>
+    <span class="chip">Football. Degree. Pathway.</span>
+    <div class="hero-cta">
+      <a href="#apply" class="btn btn-gold">Start Your Pathway <span class="arw">→</span></a>
+      <a href="#overview" class="btn btn-ghost">See the programme</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>UAE 3rd</b><span>Division football</span></div>
+      <div><b>UK / US</b><span>Accredited degree</span></div>
+      <div><b>UEFA</b><span>Licensed coaching</span></div>
+      <div><b>20</b><span>Founding places · 26/27</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OVERVIEW ============ -->
+<section class="sec-black" id="overview">
+  <span class="thread"></span>
+  <div class="wrap">
+    <div class="split reveal">
+      <div class="col-copy">
+        <span class="eyebrow">The Programme</span>
+        <h2 class="head" style="margin-top:18px">Built in Dubai.<br>Designed for the world.</h2>
+        <p class="belief" style="margin:26px 0">The pitch builds character.<br>Education builds futures.<br><span class="g">Phoenix unites them.</span></p>
+        <div class="body muted">
+          <p>Phoenix United was built by two brothers — Bader and Amer Al-Akkad. The idea came from Bader's own story: when illness ended his playing career, he came back and built the club he wished had existed — one where professional football and a real education are part of the same path.</p>
+          <p>We hold one of the few professional licences the UAE FA has granted. We use it to build players who go further on the pitch and arrive ready for everything beyond it.</p>
+        </div>
+        <div class="quote" style="margin-top:26px">
+          <p>Come for the football — everyone does. You'll leave with more than you came with: a degree, a network, a future you can build on.</p>
+          <cite>Bader Al-Akkad · Co-Founder</cite>
+        </div>
+      </div>
+      <div class="col-media">
+        <div class="media-frame">
+          <img src="__OVERVIEW__" alt="Phoenix United players against the Dubai skyline">
+          <span class="tag">Dubai · Interim visual</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO IT'S FOR ============ -->
+<section class="sec-navy" id="whofor">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Who it's for</span>
+      <h2 class="head" style="margin-top:18px;max-width:16ch">The ones who move first</h2>
+      <p class="lede muted" style="margin-top:20px">Built for players 18–25 who are serious about the professional game and just as serious about the life after it. The players who make it are the ones who move before they feel ready.</p>
+      <ul class="checks">
+        <li><span class="n">01</span><p>You're chasing a professional pathway — not a trial week.</p></li>
+        <li><span class="n">02</span><p>You want a degree that stands on its own, wherever football goes.</p></li>
+        <li><span class="n">03</span><p>You do the work when no one is watching.</p></li>
+        <li><span class="n">04</span><p>You're ready to leave home to earn your place.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PATHWAY / PYRAMID ============ -->
+<section class="sec-black" id="pathway">
+  <span class="thread"></span>
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Where you'll play</span>
+      <h2 class="head" style="margin:18px 0 8px;max-width:20ch">Real league football. Real exposure.</h2>
+      <p class="lede muted" style="margin-bottom:36px">You play in the official professional competition of the Emirates. You start in the squad and you fight for your spot every week — minutes are earned, not bought.</p>
+      <div class="pyramid">
+        <div class="tier t1"><span class="lvl">Tier 1</span><span class="nm">ADNOC Pro League</span></div>
+        <div class="tier t2"><span class="lvl">Tier 2</span><span class="nm">UAE First Division</span></div>
+        <div class="tier t3"><span class="lvl">Tier 3</span><span class="nm">UAE Second Division</span></div>
+        <div class="tier t4 here"><span class="lvl">Tier 4</span><span class="nm">UAE Third Division — Phoenix United</span><span class="badge">You play here</span></div>
+      </div>
+      <div class="exposure">
+        <b>100%</b>
+        <p>Every match is officially recorded for tactical review and international recruitment. Your season becomes a highlight reel scouts can actually watch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ A DAY IN THE LIFE ============ -->
+<section class="sec-navy" id="day">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">A day in the life</span>
+      <h2 class="head" style="margin:18px 0 30px;max-width:18ch">Every hour has a purpose</h2>
+      <div class="timeline">
+        <div class="slot"><span class="t">01 · AM</span><span class="when">Morning</span><p>Technical training. UEFA-licensed coaching on the pitches before the heat peaks.</p></div>
+        <div class="slot"><span class="t">02 · PM</span><span class="when">Afternoon</span><p>Structured downtime — dedicated hours for your degree, business masterclasses and recovery.</p></div>
+        <div class="slot"><span class="t">03 · PM</span><span class="when">Evening</span><p>Strength &amp; conditioning and video analysis. Programming by Harry Knock, former Chelsea FC Academy S&amp;C coach.</p></div>
+        <div class="slot"><span class="t">04 · Wknd</span><span class="when">Weekend</span><p>Match day in the UAE Third Division. You play.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHERE YOU LIVE — DUBAI ============ -->
+<section class="sec-cream" id="dubai">
+  <div class="wrap">
+    <div class="split reveal">
+      <div class="col-copy">
+        <span class="eyebrow">Where you live</span>
+        <h2 class="head" style="margin:18px 0 8px">A base built for focus</h2>
+        <p class="lede muted">You live minutes from where you train, in one of the safest and most connected cities on earth. Everything is handled so you can concentrate on one thing.</p>
+        <ul class="livelist">
+          <li><span class="n">—</span><p>Premium 4-star hotel residence, 24/7 security.</p></li>
+          <li><span class="n">—</span><p>Full access to the fitness centre and recovery pools.</p></li>
+          <li><span class="n">—</span><p>Managed transport to every pitch and official match.</p></li>
+          <li><span class="n">—</span><p>Direct exposure to Dubai's international corporate world.</p></li>
+          <li><span class="n">—</span><p>Meet more people in a week here than a year most places.</p></li>
+        </ul>
+      </div>
+      <div class="col-media">
+        <div class="tiles">
+          <div class="big"><img src="__DUBAI__" alt="Dubai skyline at dusk"></div>
+          <img src="__ROOM__" alt="Hotel residence room">
+          <img src="__LOBBY__" alt="Residence facilities">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NETWORK ============ -->
+<section class="sec-black" id="network">
+  <span class="thread"></span>
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Three clubs · One network</span>
+      <h2 class="head" style="margin:18px 0 8px;max-width:20ch">One year here. Three ways forward.</h2>
+      <p class="lede muted" style="margin-bottom:34px">You start at Phoenix United in Dubai — a UAE FA–licensed club in a city built for global access. From here, the network opens more doors.</p>
+      <div class="netgrid">
+        <div class="netcard entry">
+          <img class="crest" src="__CREST__" alt="Phoenix United FC">
+          <span class="place">Dubai · UAE</span>
+          <span class="cn">Phoenix United</span>
+          <p>Your entry club. Professional football in the UAE Third Division, a degree alongside it, and a city that connects to everywhere.</p>
+          <span class="tagline">Your starting line</span>
+        </div>
+        <div class="netcard">
+          <img class="crest" src="__RADCLIFFE__" alt="Radcliffe FC">
+          <span class="place">Manchester · England</span>
+          <span class="cn">Radcliffe FC</span>
+          <p>A step into the English football pyramid, in a city that is a football city and a university city in one.</p>
+          <span class="tagline">The English route</span>
+        </div>
+        <div class="netcard">
+          <img class="crest" src="__SILVES__" alt="Silves FC">
+          <span class="place">Algarve · Portugal</span>
+          <span class="cn">Silves FC</span>
+          <p>A football-first base in the Algarve, inside the European game and its recruitment corridors.</p>
+          <span class="tagline">The European route</span>
+        </div>
+      </div>
+      <div class="us-route">
+        <p><b>Set on the US college route?</b> Our partner handles placement and recruitment into the American college system — so you keep playing while you earn your degree.</p>
+        <a href="#apply" class="btn btn-ghost">Ask about the US route</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT'S INCLUDED ============ -->
+<section class="sec-navy" id="included">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">What's included</span>
+      <h2 class="head" style="margin:18px 0 30px;max-width:20ch">Everything the season asks for</h2>
+      <div class="ledger">
+        <div class="lcol">
+          <h4>On the Pitch</h4>
+          <ul>
+            <li>Daily training with UEFA-licensed coaches</li>
+            <li>Official player registration (UAE FA)</li>
+            <li>Matches in the UAE Third Division</li>
+            <li>S&amp;C to a Chelsea Academy methodology</li>
+            <li>Official Phoenix United kit — training, travel, matchday</li>
+          </ul>
+        </div>
+        <div class="lcol">
+          <h4>Performance &amp; Exposure</h4>
+          <ul>
+            <li>Every match officially recorded</li>
+            <li>Tactical video analysis</li>
+            <li>One-to-one development reviews</li>
+            <li>Your personal highlight reel</li>
+          </ul>
+        </div>
+        <div class="lcol">
+          <h4>Living &amp; Support</h4>
+          <ul>
+            <li>4-star hotel accommodation, 24/7 security</li>
+            <li>Fitness centre and recovery pools</li>
+            <li>International medical insurance</li>
+            <li>Physiotherapy, ice baths, recovery</li>
+            <li>24/7 on-site player welfare</li>
+          </ul>
+        </div>
+        <div class="lcol">
+          <h4>Logistics</h4>
+          <ul>
+            <li>Full UAE residency visa &amp; legal sponsorship</li>
+            <li>Airport transfers</li>
+            <li>Private transport to training &amp; matches</li>
+            <li>Weekly laundry</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="sec-black" id="team">
+  <span class="thread"></span>
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">The people</span>
+      <h2 class="head" style="margin:18px 0 30px;max-width:18ch">Who you learn from</h2>
+      <div class="team">
+        <div class="person">
+          <div class="ph mono"><img src="__FLAME__" alt="Phoenix flame emblem"></div>
+          <div class="info"><span class="role">Founders</span><span class="nm">Bader &amp; Amer Al-Akkad</span><p class="bio">Two brothers, one vision — the club they wished had existed, built from Dubai for the world.</p></div>
+        </div>
+        <div class="person">
+          <div class="ph"><img src="__DANNY__" alt="Danny Simpson"></div>
+          <div class="info"><span class="role">Ambassador</span><span class="nm">Danny Simpson</span><p class="bio">Premier League winner. Former Manchester United. Mentored under Sir Alex Ferguson.</p></div>
+        </div>
+        <div class="person">
+          <div class="ph"><img src="__JAMIE__" alt="Jamie Ward"></div>
+          <div class="info"><span class="role">Head Coach</span><span class="nm">Jamie Ward</span><p class="bio">UEFA A licensed. 450+ professional appearances and a former Northern Ireland international.</p></div>
+        </div>
+        <div class="person">
+          <div class="ph"><img src="__RUBEN__" alt="Ruben Rodriguez"></div>
+          <div class="info"><span class="role">Head of Recruitment</span><span class="nm">Ruben Rodriguez</span><p class="bio">Played college football in the US. 150+ players placed into American university programmes since 2020.</p></div>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:20px;font-size:.86rem">Strength &amp; conditioning programmed by <b style="color:var(--on-dark)">Harry Knock</b>, former Chelsea FC Academy S&amp;C coach.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INVESTMENT (gated) ============ -->
+<section class="sec-cream" id="investment">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">The investment</span>
+      <h2 class="head" style="margin:18px 0 8px;max-width:14ch">Two things. One place.</h2>
+      <p class="lede muted" style="max-width:64ch">A residential football academy in Europe runs $40,000–$55,000 a season. An accredited university degree runs $20,000–$40,000 a year. Players usually pay for them separately. Phoenix United puts both in one place.</p>
+      <div class="paths">
+        <div class="path complete">
+          <span class="k">The Complete Path</span>
+          <span class="pn">Football + Degree</span>
+          <p>Train as a professional and study for an accredited international degree at the same time. You graduate and you develop — together.</p>
+          <span class="fig">Your figure is set on your evaluation call</span>
+        </div>
+        <div class="path">
+          <span class="k">The Pro Path</span>
+          <span class="pn">Football Only</span>
+          <p>The full football programme, for the player whose focus is entirely the professional game this season.</p>
+          <span class="fig">Your figure is set on your evaluation call</span>
+        </div>
+      </div>
+      <p class="founding-note"><b>Founding Year · 2026/27.</b> The inaugural class includes a Founding Scholarship — reserved for the first cohort only. We discuss your exact place, path and figure on your evaluation call.</p>
+      <div style="margin-top:26px"><a href="#apply" class="btn btn-gold">Start Your Pathway <span class="arw">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPLY ============ -->
+<section class="sec-black" id="apply">
+  <span class="thread"></span>
+  <div class="wrap">
+    <div class="apply-grid">
+      <div class="apply-copy reveal">
+        <span class="eyebrow">Apply · Founding Class 26/27</span>
+        <h2 class="display" style="margin-top:18px">See if you meet the standard</h2>
+        <p class="lede muted">Book an evaluation call. We look at your game, talk through your path, and tell you honestly whether this is right for you.</p>
+        <p class="body muted" style="margin-top:16px">Quality before quantity — if only seven players meet the standard, the Founding Class is seven. We don't fill spots to make up numbers.</p>
+        <div class="scarcity">
+          <div><b>20</b><span>Places · opening season</span></div>
+          <div><b>Sept</b><span>Window closes</span></div>
+          <div><b>1</b><span>Evaluation call to start</span></div>
+        </div>
+      </div>
+      <form id="applyform" class="reveal" novalidate>
+        <div class="fh">Book your evaluation call</div>
+        <div class="two">
+          <div class="field"><label for="fn">Full name</label><input id="fn" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="em">Email</label><input id="em" name="email" type="email" required autocomplete="email"></div>
+        </div>
+        <div class="two">
+          <div class="field"><label for="co">Country</label><input id="co" name="country" autocomplete="country-name"></div>
+          <div class="field"><label for="ag">Age</label><input id="ag" name="age" inputmode="numeric"></div>
+        </div>
+        <div class="field">
+          <label for="ps">Position</label>
+          <select id="ps" name="position">
+            <option value="">Select…</option>
+            <option>Goalkeeper</option><option>Defender</option><option>Midfielder</option><option>Forward</option>
+          </select>
+        </div>
+        <div class="field"><label for="ms">Tell us about your game</label><textarea id="ms" name="message" placeholder="Current club, level, and what you're chasing…"></textarea></div>
+        <button type="submit" class="btn btn-gold">Start Your Pathway <span class="arw">→</span></button>
+        <p class="formnote">By submitting you agree to be contacted about the Phoenix United programme. We reply to serious enquiries within 48 hours.</p>
+        <div class="toast" id="toast" role="status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec-navy" id="faq">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Questions</span>
+      <h2 class="head" style="margin:18px 0 20px">Straight answers</h2>
+      <div class="faq" id="faqlist">
+        <div class="q"><button aria-expanded="false"><span>Who is the programme for?</span><span class="ic">+</span></button><div class="a"><p>Players aged 18–25 who are serious about the professional game and about the life beyond it. You bring the work; the platform is already here.</p></div></div>
+        <div class="q"><button aria-expanded="false"><span>Do I really train as a professional?</span><span class="ic">+</span></button><div class="a"><p>Yes. You train daily with UEFA-licensed coaches, register officially with the UAE FA, and play in the UAE Third Division — the official professional competition of the Emirates. Every match is recorded.</p></div></div>
+        <div class="q"><button aria-expanded="false"><span>How does the degree work alongside football?</span><span class="ic">+</span></button><div class="a"><p>You study for an accredited UK or US university degree during structured afternoon hours built into the week — not stacked on top of it. Football and education are on the same path, not in competition.</p></div></div>
+        <div class="q"><button aria-expanded="false"><span>Is my visa and accommodation handled?</span><span class="ic">+</span></button><div class="a"><p>Yes. Full UAE residency visa processing and legal sponsorship are handled by the club, alongside 4-star hotel accommodation, transport, insurance and 24/7 player welfare.</p></div></div>
+        <div class="q"><button aria-expanded="false"><span>What does it cost?</span><span class="ic">+</span></button><div class="a"><p>There are two paths — Football + Degree, or Football only. Your exact place, path and figure are set on your evaluation call, so we can be specific to you. The 2026/27 Founding Class includes a Founding Scholarship for the first cohort only.</p></div></div>
+        <div class="q"><button aria-expanded="false"><span>Is playing time guaranteed?</span><span class="ic">+</span></button><div class="a"><p>No — and we won't pretend otherwise. Your investment provides the platform; minutes are earned. Playing time is dictated by your work, and you fight for your spot every week.</p></div></div>
+        <div class="q"><button aria-expanded="false"><span>Can this lead to clubs outside Dubai?</span><span class="ic">+</span></button><div class="a"><p>You start at Phoenix United, but you join a network. Radcliffe FC opens the English pyramid, Silves FC opens the European game, and our partner handles placement into the US college system.</p></div></div>
+        <div class="q"><button aria-expanded="false"><span>How many places are there?</span><span class="ic">+</span></button><div class="a"><p>20 places for the opening season, and the window closes in September. If only seven players meet the standard, the Founding Class is seven.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="sec-black final">
+  <div class="wrap">
+    <div class="reveal">
+      <h2 class="display">The ones who make it move first</h2>
+      <p class="lede muted">20 places for the opening season. The window closes in September — after that, the door stays shut for months. Take the step before you feel ready.</p>
+      <a href="#apply" class="btn btn-gold">Start Your Pathway <span class="arw">→</span></a>
+      <div class="final-marks">
+        <img src="__WORDMARK__" alt="Phoenix United">
+        <img src="__ARABIC__" alt="Strive to Rise — Arabic calligraphy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img src="__CREST__" alt="Phoenix United FC">
+        <p class="belief-sm">The pitch builds character. Education builds futures. <span class="g">Phoenix unites them.</span></p>
+        <div class="arabic-mark"><img src="__ARABIC__" alt="نسعى فنحيا — Strive to Rise"></div>
+      </div>
+      <div class="foot-col">
+        <h5>The Programme</h5>
+        <a href="#overview">Overview</a>
+        <a href="#pathway">Where you play</a>
+        <a href="#included">What's included</a>
+        <a href="#network">The network</a>
+        <a href="#team">The people</a>
+      </div>
+      <div class="foot-col">
+        <h5>Follow</h5>
+        <a href="https://instagram.com/phoenixutd" target="_blank" rel="noopener">@phoenixutd · Club</a>
+        <a href="https://instagram.com/phoenixfn" target="_blank" rel="noopener">@phoenixfn · Network</a>
+        <a href="#apply">Book an evaluation call</a>
+        <p>Dubai · United Arab Emirates</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p class="mission">Through Football and Education, Phoenix Builds Leaders for Life.</p>
+      <p class="tribute">Strive to Rise · <span class="g">نسعى فنحيا</span> · In memory of Joe Thompson — Number 15</p>
+    </div>
+    <p style="margin-top:20px;font-size:.7rem;color:var(--on-dark-mute)">© 2026 Phoenix United FC. Interim visuals shown — to be replaced after the 2026 photoshoot.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // header scrolled state
+  var hdr=document.getElementById('top');
+  var onScroll=function(){ hdr.classList.toggle('scrolled', window.scrollY>20); };
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  // mobile nav
+  var burger=document.getElementById('burger'), links=document.getElementById('navlinks');
+  burger.addEventListener('click',function(){
+    var open=links.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);
+  });
+  links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){links.classList.remove('open');burger.setAttribute('aria-expanded',false);});});
+
+  // reveal on scroll
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  } else { document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); }
+
+  // faq accordion
+  document.querySelectorAll('#faqlist .q button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var q=btn.parentElement, a=q.querySelector('.a'), open=q.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open);
+      a.style.maxHeight = open ? a.scrollHeight+'px' : 0;
+    });
+  });
+
+  // form (front-end only)
+  var form=document.getElementById('applyform'), toast=document.getElementById('toast');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=(document.getElementById('fn').value||'').trim();
+    var email=(document.getElementById('em').value||'').trim();
+    if(!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+      toast.textContent='Please add your name and a valid email so we can reach you.';
+      toast.classList.add('show'); return;
+    }
+    toast.textContent='Thanks, '+name.split(' ')[0]+'. Your evaluation request is in — we reply to serious enquiries within 48 hours.';
+    toast.classList.add('show');
+    form.reset();
+  });
+})();
+</script>

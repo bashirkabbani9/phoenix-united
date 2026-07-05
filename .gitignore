@@ -1,0 +1,13 @@
+# --- Confidential brand source material — never publish to a public repo ---
+*.pptx
+*.pdf
+*.docx
+
+# --- Local extraction scratch (regenerated from source docs) ---
+_assets/
+
+# --- OS / editor cruft ---
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
